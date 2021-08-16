@@ -8,14 +8,12 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.Divider
 import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -85,7 +83,7 @@ class TodoActivity: ComponentActivity() {
                 openDialog.value = false
             },
                 title = {
-                    Text(text = "Todo")
+                    Text(text = "Todo", fontWeight = FontWeight.Bold)
                 },
                 text = {
                     Column(
@@ -144,6 +142,9 @@ class TodoActivity: ComponentActivity() {
                     )
                 )
                 Toast.makeText(this@TodoActivity, "${title.value} inserted!", Toast.LENGTH_SHORT ).show()
+                title.value = ""
+                description.value = ""
+
             } else {
                 Toast.makeText(this@TodoActivity, "Please add something..", Toast.LENGTH_SHORT ).show()
             }
@@ -190,6 +191,11 @@ class TodoActivity: ComponentActivity() {
                ) {
                    Text(text = "Delete Todo", fontWeight = FontWeight.ExtraBold)
                }
+               Spacer(modifier = Modifier.height(10.dp))
+               Divider(modifier = Modifier.padding(start = 9.dp, end = 9.dp),
+                   color = Color.Blue,
+                   thickness = 1.dp
+               )
            }
         }
     }
